@@ -1,0 +1,27 @@
+
+{% extends "layout.html" %}
+
+    {% block content %}
+    <div class="row">
+
+
+        <div class="col-sm-3 col-6">
+            <img src="{{profile.image}}" alt="{{profile.name}}"
+            class="img-fluid img-thumbnail">
+        </div>
+
+        <div class="col-sm-3 col-6">
+            <h3 class="h5">Nome do Personagem: {{profile.name}}</h3>
+            <h3 class="h5">Status: {{profile.status}}</h3>
+            <h3 class="h5">Gênero: {{profile.gender}}</h3>
+            <h3 class="h5">Espécie: {{profile.species}}</h3>
+            <h3 class="h5">Origem: {{profile.origin.name}}</h3>
+            {% if profile.location_info %}
+                <h3 class="h5">Localização: <a href="/location/{{ profile.location_info.id }}">{{ profile.location_info.name }}</a></h3>
+            {% endif %}
+        </div>
+
+    </div>
+    {% endblock %}
+
+ 

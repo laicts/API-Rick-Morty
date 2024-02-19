@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Detalhes da Localização</h1>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ local.name }}</h3>
+            <p class="card-text">Tipo: {{ local.type }}</p>
+            <p class="card-text">Dimensão: {{ local.dimension }}</p>
+            <h5 class="card-title">Residentes:</h5>
+            <ul>
+                {% for resident in local.residents %}
+                <li><a href="/profile/{{ resident.split('/')[-1] }}">{{ resident }}</a></li>                
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
