@@ -81,6 +81,14 @@ def get_episodios_lista():
     
     return {"episodes": episodes_list}
 
+
+def get_character_info(character_id):
+    url = f"https://rickandmortyapi.com/api/character/{character_id}"
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    character_data = json.loads(data)
+    return character_data
+
 @app.route("/episodios")
 def get_list_episodes_page():
     url = "https://rickandmortyapi.com/api/episode"
@@ -97,7 +105,7 @@ def get_episode_details(id):
     data = response.read()
     episode_data = json.loads(data)
 
-    return render_template("profileEpisodios.html", episode=episode_data)
+    return render_template("profileEpisodios.html", episode=episode_data, get_character_info=get_character_info)
 
 # ROTAS PARA A LOCALIZAÇÃO
 
@@ -123,6 +131,14 @@ def get_list_location():
     
     return {"localization": location_list}
 
+def get_resident_info(resident_id):
+    url = f"https://rickandmortyapi.com/api/character/{resident_id}"
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    resident_data = json.loads(data)
+    return resident_data
+
+
 @app.route("/location")
 def get_list_location_page():
     url = "https://rickandmortyapi.com/api/location"
@@ -139,5 +155,5 @@ def get_location_details(id):
     data = response.read()
     local_data = json.loads(data)
 
-    return render_template("locationsProfile.html", local=local_data)
+    return render_template("locationsProfile.html", local=local_data, get_resident_info=get_resident_info)
 

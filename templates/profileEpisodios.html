@@ -10,11 +10,15 @@
             <p class="card-text">Código do Episódio: {{ episode.episode }}</p>
             <h5 class="card-title">Personagens:</h5>
             <ul class="list-group">
-                {% for character in episode.characters %}
-                <li class="list-group-item">
-                    <a href="/profile/{{ character.split('/')[-1] }}" class="card-link">{{ character }}</a>
-                </li>
-                {% endfor %}
+                {% for character_url in episode.characters %}
+                {% set character_id = character_url.split('/')[-1] %}
+                {% set character_info = get_character_info(character_id) %}
+                {% if character_info %}
+                    <li class="list-group-item">
+                        <a href="/profile/{{ character_id }}" class="card-link">{{ character_info.name }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
             </ul>
         </div>
     </div>
